@@ -1,0 +1,33 @@
+plugins {
+	id 'java'
+	id 'application'
+	id 'org.openjfx.javafxplugin' version '0.0.8'
+	id "org.unbroken-dome.test-sets" version "4.0.0"
+}
+
+
+repositories {
+mavenCentral()
+}
+
+testSets {
+	integrationTest
+}
+
+dependencies {
+	testImplementation 'junit:junit:4.13.2'
+	testImplementation "org.testfx:testfx-junit:4.0.15-alpha"
+	testImplementation 'org.testfx:testfx-core:4.0.16-alpha'
+	testImplementation 'org.mockito:mockito-core:4.2.0'
+	implementation 'org.jetbrains:annotations:22.0.0'
+}
+
+check.dependsOn integrationTest
+integrationTest.mustRunAfter test
+
+application.mainClassName = "it.unimi.di.prog2.lab8.Main"
+
+javafx {
+	version = '15.0.1'
+	modules = [ 'javafx.controls']
+}
